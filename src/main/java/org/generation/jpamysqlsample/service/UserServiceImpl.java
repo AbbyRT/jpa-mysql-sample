@@ -4,6 +4,7 @@ import org.generation.jpamysqlsample.model.User;
 import org.generation.jpamysqlsample.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -21,7 +22,7 @@ public class UserServiceImpl
     }
 
     @Override
-    public User getUser( String id )
+    public User getUser(Integer id)
     {
         Optional<User> user = userRepository.findById( id );
         return user.orElse( null ); //devuelve usuario, si no existe regresa null
@@ -33,10 +34,16 @@ public class UserServiceImpl
         return userRepository.save( user );
     }
 
+
     @Override
-    public void delete( String id )
+    public void delete(Integer id)
     {
         userRepository.deleteById( id );
+    }
+
+    @Override
+    public ArrayList<User> findByName(String name) {
+        return userRepository.findByName(name);
     }
 
 }
